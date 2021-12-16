@@ -1,18 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+# Internal Imports
+from .models import Category, Product
+# Import from cart
+from cart.forms import CartAddProductForm
 
 
 # Create your views here.
-def index(request):
-    text = "Hello World"
+def product_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=category)
     context = {
-        'context_text': text
+        'category': category,
+        'categories': categories,
+        'products': products
     }
-    return render(request, 'shop/base.html', context)
+    return render(request, 'shop/product/list.html', context)
+
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    cart_product_form = CartAddProductForm()  # Cart form
+    return render(request, 'shop/product/detail.html',
+                  {'product': product,
+                   'cart_product_form': cart_product_form})
 
 
 def home(request):
-    text = "This is the home page"
-    context = {
-        'context_text': text
-    }
-    return render(request, 'shop/home.html', context)
+    return render(request, 'shop/product/home.html')

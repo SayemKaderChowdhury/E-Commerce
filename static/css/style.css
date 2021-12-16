@@ -28927,6 +28927,16 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.outline-0 {
+  outline: hover;
+  outline-offset: 0;
+}
+
+.outline-1 {
+  outline: active;
+  outline-offset: 0;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -28942,6 +28952,16 @@ video {
   outline-offset: 2px;
 }
 
+.focus-within\:outline-0:focus-within {
+  outline: hover;
+  outline-offset: 0;
+}
+
+.focus-within\:outline-1:focus-within {
+  outline: active;
+  outline-offset: 0;
+}
+
 .focus-within\:outline-none:focus-within {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -28955,6 +28975,16 @@ video {
 .focus-within\:outline-black:focus-within {
   outline: 2px dotted black;
   outline-offset: 2px;
+}
+
+.focus\:outline-0:focus {
+  outline: hover;
+  outline-offset: 0;
+}
+
+.focus\:outline-1:focus {
+  outline: active;
+  outline-offset: 0;
 }
 
 .focus\:outline-none:focus {
@@ -60167,6 +60197,16 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .sm\:outline-0 {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .sm\:outline-1 {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .sm\:outline-none {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -60182,6 +60222,16 @@ video {
     outline-offset: 2px;
   }
 
+  .sm\:focus-within\:outline-0:focus-within {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .sm\:focus-within\:outline-1:focus-within {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .sm\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -60195,6 +60245,16 @@ video {
   .sm\:focus-within\:outline-black:focus-within {
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .sm\:focus\:outline-0:focus {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .sm\:focus\:outline-1:focus {
+    outline: active;
+    outline-offset: 0;
   }
 
   .sm\:focus\:outline-none:focus {
@@ -91395,6 +91455,16 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .md\:outline-0 {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .md\:outline-1 {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .md\:outline-none {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -91410,6 +91480,16 @@ video {
     outline-offset: 2px;
   }
 
+  .md\:focus-within\:outline-0:focus-within {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .md\:focus-within\:outline-1:focus-within {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .md\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -91423,6 +91503,16 @@ video {
   .md\:focus-within\:outline-black:focus-within {
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .md\:focus\:outline-0:focus {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .md\:focus\:outline-1:focus {
+    outline: active;
+    outline-offset: 0;
   }
 
   .md\:focus\:outline-none:focus {
@@ -122623,6 +122713,16 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .lg\:outline-0 {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .lg\:outline-1 {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .lg\:outline-none {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -122638,6 +122738,16 @@ video {
     outline-offset: 2px;
   }
 
+  .lg\:focus-within\:outline-0:focus-within {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .lg\:focus-within\:outline-1:focus-within {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .lg\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -122651,6 +122761,16 @@ video {
   .lg\:focus-within\:outline-black:focus-within {
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .lg\:focus\:outline-0:focus {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .lg\:focus\:outline-1:focus {
+    outline: active;
+    outline-offset: 0;
   }
 
   .lg\:focus\:outline-none:focus {
@@ -153851,6 +153971,16 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .xl\:outline-0 {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .xl\:outline-1 {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .xl\:outline-none {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -153866,6 +153996,16 @@ video {
     outline-offset: 2px;
   }
 
+  .xl\:focus-within\:outline-0:focus-within {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .xl\:focus-within\:outline-1:focus-within {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .xl\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -153879,6 +154019,16 @@ video {
   .xl\:focus-within\:outline-black:focus-within {
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .xl\:focus\:outline-0:focus {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .xl\:focus\:outline-1:focus {
+    outline: active;
+    outline-offset: 0;
   }
 
   .xl\:focus\:outline-none:focus {
@@ -185079,6 +185229,16 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .\32xl\:outline-0 {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .\32xl\:outline-1 {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .\32xl\:outline-none {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -185094,6 +185254,16 @@ video {
     outline-offset: 2px;
   }
 
+  .\32xl\:focus-within\:outline-0:focus-within {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .\32xl\:focus-within\:outline-1:focus-within {
+    outline: active;
+    outline-offset: 0;
+  }
+
   .\32xl\:focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -185107,6 +185277,16 @@ video {
   .\32xl\:focus-within\:outline-black:focus-within {
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .\32xl\:focus\:outline-0:focus {
+    outline: hover;
+    outline-offset: 0;
+  }
+
+  .\32xl\:focus\:outline-1:focus {
+    outline: active;
+    outline-offset: 0;
   }
 
   .\32xl\:focus\:outline-none:focus {
