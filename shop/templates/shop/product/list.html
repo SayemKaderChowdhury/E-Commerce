@@ -29,7 +29,8 @@
                 <section aria-labelledby="products-heading" class="pt-6 pb-24">
                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
                         <!-- Main Body Categories -->
-                        <ul role="list" class="pb-6 space-y-4 text-sm font-medium text-gray-900 border-b border-gray-200 ">
+                        <ul role="list"
+                            class="pb-6 space-y-4 text-sm font-medium text-gray-900 border-b border-gray-200 ">
                             <li>
                                 <a class="text-2xl font-extrabold tracking-tight text-gray-500"
                                    href="{% url "shop:product_list" %}">
@@ -55,30 +56,30 @@
                                         <div class="flex flex-wrap -m-4">
 
 
-
                                             {% for product in products %}
-                                                    <div class="w-full p-4 lg:w-1/4 md:w-1/2">
-                                                <a class="relative block h-48 overflow-hidden rounded">
-{#                                                    <img alt="ecommerce" class="block object-cover object-center w-full h-full "#}
-{#                                                            src="https://dummyimage.com/420x260"#}
-{#                                                    />#}
-                                                    <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" alt="">
-                                                </a>
-                                                <div class="mt-4">
-                                                    <a href="{{ product.category.get_absolute_url }}">
-                                                        <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">
-                                                            {{ product.category }}
-                                                        </h3>
+                                                <div class="w-full p-4 lg:w-1/4 md:w-1/2">
+                                                    <a class="relative block h-48 overflow-hidden rounded"
+                                                       href="{{ product.get_absolute_url }}">
+                                                        {#                                                    <img alt="ecommerce" class="block object-cover object-center w-full h-full "#}
+                                                        {#                                                            src="https://dummyimage.com/420x260"#}
+                                                        {#                                                    />#}
+                                                        <img src="
+                                                                {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                                                             alt="">
                                                     </a>
-                                                    <h2 class="text-lg font-medium text-gray-900 title-font">
-                                                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                                                    </h2>
-                                                    <p class="mt-1">${{ product.price | floatformat:2 }}</p>
+                                                    <div class="mt-4">
+                                                        <a href="{{ product.category.get_absolute_url }}">
+                                                            <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">
+                                                                {{ product.category }}
+                                                            </h3>
+                                                        </a>
+                                                        <h2 class="text-lg font-medium text-gray-900 title-font">
+                                                            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                                        </h2>
+                                                        <p class="mt-1">${{ product.price | floatformat:2 }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             {% endfor %}
-
-
                                         </div>
                                     </div>
                                 </section>

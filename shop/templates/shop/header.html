@@ -3,11 +3,9 @@
         <nav aria-label="Top" class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="border-b border-gray-200">
                 <div class="flex items-center h-16">
-                    <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. -->
-
                     <!-- Logo -->
                     <div class="flex ml-4 lg:ml-0">
-                        <a href="#">
+                        <a href="{% url 'shop:product_list' %}">
                             <span class="sr-only">Workflow</span>
                             <img
                                     class="w-auto h-8"
@@ -17,7 +15,7 @@
                         </a>
                     </div>
 
-                    <!-- Flyout menus -->
+                    <!-- Header Menus -->
                     <div class="lg:ml-8 lg:block lg:self-stretch">
                         <div class="flex h-full space-x-8">
                             <div class="flex">
@@ -26,12 +24,10 @@
                                     <button type="button"
                                             class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out border-b-2 border-transparent hover:text-gray-800"
                                             aria-expanded="false">
-                                        Women
+                                        <a href="{% url 'shop:product_list' %}">
+                                            Home
+                                        </a>
                                     </button>
-                                </div>
-                                <div class="absolute inset-x-0 text-sm text-gray-500 top-full">
-                                    <div class="absolute inset-0 bg-white shadow top-1/2" aria-hidden="true"
-                                    ></div>
                                 </div>
                             </div>
 
@@ -41,27 +37,22 @@
                                     <button type="button"
                                             class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out border-b-2 border-transparent hover:text-gray-800"
                                             aria-expanded="false">
-                                        Men
+                                        <a href="{% url 'shop:about' %}">
+                                            About
+                                        </a>
                                     </button>
-                                </div>
-                                <div class="absolute inset-x-0 text-sm text-gray-500 top-full">
-                                    <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
-                                    <div class="absolute inset-0 bg-white shadow top-1/2" aria-hidden="true"
-                                    ></div>
                                 </div>
                             </div>
 
-                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
-                                Company
-                            </a>
-
-                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
-                                Stores
+                            <a href="{% url "shop:contact" %}"
+                               class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
+                                Contact
                             </a>
                         </div>
                     </div>
 
                     <div class="flex items-center ml-auto">
+                        <!-- Login and Create account part -->
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                             <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">
                                 Sign in
@@ -91,9 +82,8 @@
 
                         <!-- Cart -->
                         <div class="flow-root ml-4 lg:ml-6">
-                            <a href="#" class="flex items-center p-2 -m-2 group p">
-
-                                <!-- Heroicon name: outline/shopping-bag -->
+                            <a href="{% url "cart:cart_detail" %}"
+                               class="flex items-center justify-between p-2 -m-2 group p">
                                 <svg class="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
                                      xmlns="http://www.w3.org/2000/svg"
                                      fill="none"
@@ -105,10 +95,17 @@
                                     </path>
                                 </svg>
                                 <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                                    0
+                                    {% with total_item=cart|length %}
+                                        {% if total_item > 0 %}
+                                            {{ total_item }} item{{ total_item|pluralize }}, ${{ cart.get_total_price }}
+                                        {% else %}
+                                            Your cart is empty
+                                        {% endif %}
+                                    {% endwith %}
                                 </span>
                             </a>
                         </div>
+
                     </div>
                 </div>
             </div>
