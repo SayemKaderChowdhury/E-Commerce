@@ -19,7 +19,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 # class ProductListView(ListView):
-#     queryset = Product.objects.all()
+#     queryset = Product.objects.filter(available=True)
 #     context_object_name = 'products'
 #     paginate_by = 8
 #     template_name = 'shop/product/list.html'
@@ -27,13 +27,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # def product_list(request, category_slug=None):
 #     # pagination
-#     object_list = Product.objects.filter(available=True)
-#     paginator = Paginator(object_list, 8)  # 8 products per page
-#     page = request.GET.get('page')
-#
+#     # object_list = Product.objects.filter(available=True)
+#     # paginator = Paginator(object_list, 8)  # 8 products per page
+#     # page = request.GET.get('page')
 #     category = None
 #     categories = Category.objects.all()
-#     # products = Product.objects.filter(available=True)
+#     products = Product.objects.filter(available=True)
 #     if category_slug:
 #         category = get_object_or_404(Category, slug=category_slug)
 #         products = Product.objects.filter(category=category)
@@ -47,15 +46,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def product_list(request, category_slug=None):
     # pagination
     object_list = Product.objects.filter(available=True)
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        object_list = Product.objects.filter(category=category)
+
     paginator = Paginator(object_list, 8)  # 8 products per page
     page = request.GET.get('page')
 
     category = None
     categories = Category.objects.all()
-    # products = Product.objects.filter(available=True)
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        object_list = Product.objects.filter(category=category)
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
