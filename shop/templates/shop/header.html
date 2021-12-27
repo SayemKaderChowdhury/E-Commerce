@@ -54,14 +54,33 @@
                     <div class="flex items-center ml-auto">
                         <!-- Login and Create account part -->
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                            <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">
-                                Sign in
-                            </a>
+                            {% if request.user.is_authenticated %}
+                                Hello {{ request.user.first_name }},
+                                <a href="{% url 'shop:logout' %}"
+                                   class="text-sm font-medium text-gray-700 hover:text-gray-800">
+                                    Logout
+                                </a>
+                            {% else %}
+                                <a href="{% url 'shop:login' %}"
+                                   class="text-sm font-medium text-gray-700 hover:text-gray-800">
+                                    Log-in
+                                </a>
+                            {% endif %}
                             <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
                             <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">
                                 Create Account
                             </a>
                         </div>
+                        {#                        <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">#}
+                        {#                            <a href="{% url 'shop:login' %}"#}
+                        {#                               class="text-sm font-medium text-gray-700 hover:text-gray-800">#}
+                        {#                                Log-in#}
+                        {#                            </a>#}
+                        {#                            <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>#}
+                        {#                            <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">#}
+                        {#                                Create Account#}
+                        {#                            </a>#}
+                        {#                        </div>#}
 
                         <!-- Search -->
                         <div class="flex lg:ml-6">
