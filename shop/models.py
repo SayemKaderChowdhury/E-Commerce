@@ -3,6 +3,9 @@ from django.db import models
 # Routing imports
 from django.urls import reverse
 
+# Importing settings for profile model
+from django.conf import settings
+
 
 # Create your models here.
 class Category(models.Model):
@@ -41,3 +44,15 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
+
+
+# Profile model
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+    date_of_birth = models.DateField(blank=True, null=True)
+    photo = models.ImageField(upload_to='users/%Y/%m/%d/',
+                              blank=True)
+
+    def __str__(self):
+        return f'Profile for user {self.user.username}'

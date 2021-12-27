@@ -14,6 +14,7 @@ urlpatterns = [
 
     # Url for registering users
     path('register/', views.register, name='register'),
+    path('edit/', views.edit, name='edit'),
 
     # Product page urls
     path('about/', views.about, name='about'),

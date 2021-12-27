@@ -1,30 +1,73 @@
 from django.shortcuts import render, get_object_or_404
 # Internal Imports
-from .models import Category, Product
+from .models import Category, Product, Profile
 # Import from cart
 from cart.forms import CartAddProductForm
 
 # Import for the login form
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, UserRegistrationForm
+from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 
 # Login required import
 from django.contrib.auth.decorators import login_required
 
+# Import to help with pagination
+from django.views.generic import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 # Create your views here.
+# class ProductListView(ListView):
+#     queryset = Product.objects.all()
+#     context_object_name = 'products'
+#     paginate_by = 8
+#     template_name = 'shop/product/list.html'
+
+
+# def product_list(request, category_slug=None):
+#     # pagination
+#     object_list = Product.objects.filter(available=True)
+#     paginator = Paginator(object_list, 8)  # 8 products per page
+#     page = request.GET.get('page')
+#
+#     category = None
+#     categories = Category.objects.all()
+#     # products = Product.objects.filter(available=True)
+#     if category_slug:
+#         category = get_object_or_404(Category, slug=category_slug)
+#         products = Product.objects.filter(category=category)
+#     context = {
+#         'category': category,
+#         'categories': categories,
+#         'products': products
+#     }
+#     return render(request, 'shop/product/list.html', context)
+
 def product_list(request, category_slug=None):
+    # pagination
+    object_list = Product.objects.filter(available=True)
+    paginator = Paginator(object_list, 8)  # 8 products per page
+    page = request.GET.get('page')
+
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+    # products = Product.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category)
+        object_list = Product.objects.filter(category=category)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
     context = {
+        'page': page,
         'category': category,
         'categories': categories,
-        'products': products
+        'products': products,
     }
     return render(request, 'shop/product/list.html', context)
 
@@ -78,10 +121,30 @@ def register(request):
             new_user.save()
 
             # Create the user profile
-            # Profile.objects.create(user=new_user)
+            Profile.objects.create(user=new_user)
             return render(request, 'shop/account/register_done.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request, 'shop/account/register.html',
                   {'user_form': user_form})
+
+
+def edit(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(instance=request.user,
+                                 data=request.POST)
+        profile_form = ProfileEditForm(instance=request.user.profile,
+                                       data=request.POST,
+                                       files=request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileEditForm(instance=request.user.profile)
+
+    return render(request, 'shop/account/edit.html',
+                  {'user_form': user_form,
+                   'profile_form': profile_form})
