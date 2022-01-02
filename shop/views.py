@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 # Internal Imports
-from .models import Category, Product, Profile
+from .models import Category, Product, Profile, Comment
 # Import from cart
 from cart.forms import CartAddProductForm
+
+# Import from the base forms
+from .forms import CommentForm
 
 # Import for the login form
 from django.http import HttpResponse
@@ -18,31 +21,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
-# class ProductListView(ListView):
-#     queryset = Product.objects.filter(available=True)
-#     context_object_name = 'products'
-#     paginate_by = 8
-#     template_name = 'shop/product/list.html'
-
-
-# def product_list(request, category_slug=None):
-#     # pagination
-#     # object_list = Product.objects.filter(available=True)
-#     # paginator = Paginator(object_list, 8)  # 8 products per page
-#     # page = request.GET.get('page')
-#     category = None
-#     categories = Category.objects.all()
-#     products = Product.objects.filter(available=True)
-#     if category_slug:
-#         category = get_object_or_404(Category, slug=category_slug)
-#         products = Product.objects.filter(category=category)
-#     context = {
-#         'category': category,
-#         'categories': categories,
-#         'products': products
-#     }
-#     return render(request, 'shop/product/list.html', context)
-
 def product_list(request, category_slug=None):
     # pagination
     object_list = Product.objects.filter(available=True)
@@ -75,8 +53,28 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()  # Cart form
+
+    # List of active comments for this post
+    comments = product.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = product
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
     return render(request, 'shop/product/detail.html',
                   {'product': product,
+                   'comments': comments,
+                   'new_comment': new_comment,
+                   'comment_form': comment_form,
                    'cart_product_form': cart_product_form})
 
 

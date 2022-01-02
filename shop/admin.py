@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Internal Imports
-from .models import Category, Product, Profile
+from .models import Category, Product, Profile, Comment
 
 
 # Register your models here.
@@ -22,3 +22,10 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'date_of_birth', 'photo']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'product', 'created', 'active')
+    list_filter = ('active', 'created', 'updated')
+    search_fields = ('name', 'email', 'body')

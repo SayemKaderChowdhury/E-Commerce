@@ -1,7 +1,7 @@
 from django import forms
 
 # Import for editing the User forms
-from .models import Profile
+from .models import Profile, Comment
 
 # Add the user form part
 from django.contrib.auth.models import User
@@ -38,3 +38,10 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('date_of_birth', 'photo')
+
+
+# Dynamic comment form
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
