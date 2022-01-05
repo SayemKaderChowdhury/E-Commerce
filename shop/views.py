@@ -64,7 +64,7 @@ def product_detail(request, id, slug):
             # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment
-            new_comment.post = product
+            new_comment.product = product
             # Save the comment to the database
             new_comment.save()
     else:

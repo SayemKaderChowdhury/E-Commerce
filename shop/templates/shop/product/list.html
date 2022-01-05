@@ -65,6 +65,7 @@
                                                         {#                                                    />#}
                                                         <img src="
 
+
                                                                 {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
                                                              alt="">
                                                     </a>
@@ -85,7 +86,7 @@
 
                                         <!--Added Pagination -->
                                         {% include "shop/pagination.html" with page=products %}
-{#                                        {% include "shop/pagination.html" with page=page_obj %}#}
+                                        {#                                        {% include "shop/pagination.html" with page=page_obj %}#}
                                     </div>
                                 </section>
                             </div>
