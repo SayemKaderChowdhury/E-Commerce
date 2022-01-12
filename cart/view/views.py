@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from shop.models import Product
-from .cart import Cart
-from .forms import CartAddProductForm
+from shop.model.models import Product
+from cart.view.cart import Cart
+from cart.forms import CartAddProductForm
 
 
-# Create your views here.
+# Create your view here.
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)

@@ -46,7 +46,6 @@ class Product(models.Model):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
 
-# Profile model
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
@@ -58,7 +57,6 @@ class Profile(models.Model):
         return f'Profile for user {self.user.username}'
 
 
-# Comment Model
 class Comment(models.Model):
     product = models.ForeignKey("Product", on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)

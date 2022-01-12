@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import OrderItem
-from .forms import OrderCreateForm
-from cart.cart import Cart
+from orders.model.models import OrderItem
+from orders.forms import OrderCreateForm
+from cart.view.cart import Cart
 
 
-# Create your views here.
+# Create your view here.
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':

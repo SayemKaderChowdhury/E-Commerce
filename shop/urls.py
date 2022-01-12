@@ -1,5 +1,6 @@
 from django.urls import path, include
-from . import views
+# from . import view
+from shop.view import views
 
 # Import from the django auth
 from django.contrib.auth import views as auth_views

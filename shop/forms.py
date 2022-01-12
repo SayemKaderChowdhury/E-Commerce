@@ -1,7 +1,7 @@
 from django import forms
 
 # Import for editing the User forms
-from .models import Profile, Comment
+from shop.model.models import Profile, Comment
 
 # Add the user form part
 from django.contrib.auth.models import User

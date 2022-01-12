@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 # Internal Imports
-from .models import Category, Product, Profile, Comment
+from shop.model.models import Category, Product, Profile, Comment
 # Import from cart
 from cart.forms import CartAddProductForm
 
 # Import from the base forms
-from .forms import CommentForm
+from shop.forms import CommentForm
 
 # Import for the login form
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from shop.forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 
 # Login required import
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-# Create your views here.
+# Create your view here.
 def product_list(request, category_slug=None):
     # pagination
     object_list = Product.objects.filter(available=True)

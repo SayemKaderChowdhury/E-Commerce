@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Internal Imports
-from .models import Category, Product, Profile, Comment
+from shop.model.models import Category, Product, Profile, Comment
 
 
 # Register your models here.
